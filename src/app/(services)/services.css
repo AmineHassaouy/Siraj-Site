@@ -1,0 +1,200 @@
+/* SIRAJ · Services page styles — carried over verbatim from the Services.html wireframe. */
+
+        /* ============ Base commune — home wireframe v4 ============ */
+        :root{
+            --b0:#FAF8EA;--cr:#2A1807;--cr2:#5E3B14;--oc:#B8642A;--ocl:#A4530C;
+            --ln:rgba(139,63,12,.2);--page-light:#FAF8EA;--u:min(1vw,1.7778vh);
+            color-scheme:light;box-sizing:border-box;
+            padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+        }
+        html{scroll-behavior:smooth;scroll-padding-top:84px;scrollbar-color:#A4530C #F5F1D7;scrollbar-width:thin}
+        *{box-sizing:border-box;margin:0}
+        body{
+            background:var(--b0);color:var(--cr);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden;
+            display:flex;flex-direction:column;
+            min-height:calc(100vh  - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+            min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+            padding-top:calc(84px + clamp(40px,8vh,120px)); /* barre fixe + espace garanti */
+        }
+        a{color:inherit;text-decoration:none}
+        /* typographie éditoriale limitée au contenu (le footer garde Manrope comme sur la home) */
+        main h1,main h2,main h3,main h4,.font-editorial{font-family:'Cormorant Garamond',Georgia,serif}
+
+        /* logo */
+.lg{height:1.15em;aspect-ratio:1169/1345;background:url("/images/logo.png") center/contain no-repeat;flex:0 0 auto}.lk .lg,.kw .lg{filter:none}
+        
+        .lk{display:inline-flex;align-items:center;gap:.3em;line-height:1}
+        .nm{font:600 1em/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.14em;background:linear-gradient(180deg,#F7D3A8,#D99A5D 42%,#B8642A 78%,#E8AC72);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+        /* logo figé à son point d'arrivée : left = padding barre, top = 19px,
+           hauteur = min(10.7u , 46px)  ->  font-size = min(9.3u , 46*9.3/10.7) */
+        .lock{position:fixed;left:32px;top:19px;z-index:60;font-size:min(calc(var(--u)*9.3),calc(46px*9.3/10.7))}
+        .lock .nm{font-size:.58em}
+
+        .btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 26px;border-radius:99px;background:var(--ocl);color:var(--b0);font-weight:600;font-size:15px;transition:.4s}
+        .btn:hover{background:var(--cr2);box-shadow:0 0 28px rgba(164,83,12,.45);transform:translateY(-2px)}
+
+        /* barre : état "docked" permanent */
+        .nav,footer{--b0:#2A1807;--cr2:#EEE9C1;--ocl:#F0C69A;--ln:rgba(240,198,154,.22)}
+        .nav{position:fixed;inset:0 0 auto;height:84px;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 32px;background:rgba(42,24,7,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+        .brand{justify-self:start;visibility:hidden;font-size:40px;line-height:1;pointer-events:none}
+        .nav .nm{font-size:.86em}
+        .mn{justify-self:center}
+        .mn ul{display:flex;gap:44px;list-style:none;padding:0;margin:0}
+        .mn li a{font-size:15px;color:var(--cr2);padding:8px 0;border-bottom:1px solid transparent;transition:.3s}
+        .mn li a:hover,.mn li a.cur{color:var(--ocl);border-color:var(--ocl)}
+        .nr{display:flex;justify-content:flex-end;justify-self:end;align-items:center;gap:18px;font-size:14px;color:var(--cr2)}
+        .nr .btn{min-height:42px;padding:0 22px;font-size:14px}
+
+        /* burger */
+        .burger{display:none;position:relative;width:46px;height:46px;flex:0 0 auto;border-radius:12px;border:1px solid var(--ln);background:rgba(240,198,154,.07);cursor:pointer;color:#FFFDF4;transition:background .3s,border-color .3s,color .3s}
+        .burger span{position:absolute;left:12px;right:12px;height:2px;border-radius:2px;background:currentColor;transition:top .35s ease,transform .35s ease,opacity .25s ease}
+        .burger span:nth-child(1){top:15px}
+        .burger span:nth-child(2){top:22px}
+        .burger span:nth-child(3){top:29px}
+        .burger[aria-expanded="true"] span:nth-child(1){top:22px;transform:rotate(45deg)}
+        .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+        .burger[aria-expanded="true"] span:nth-child(3){top:22px;transform:rotate(-45deg)}
+
+        /* panneau mobile */
+        .mm{position:absolute;top:84px;left:0;right:0;display:none;flex-direction:column;padding:8px 24px 22px;background:linear-gradient(180deg,rgba(42,24,7,.985),rgba(42,24,7,.94));border-bottom:1px solid var(--ln);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 26px 50px rgba(18,9,2,.5);opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .32s ease,transform .32s ease,visibility .32s}
+        .mm.open{opacity:1;visibility:visible;transform:none}
+        .mm ul{display:flex;flex-direction:column;gap:0;list-style:none;padding:0;margin:0}
+        .mm li a{display:flex;align-items:center;justify-content:space-between;padding:15px 6px;font-size:17px;color:var(--cr2);border-bottom:1px solid rgba(240,198,154,.14);transition:color .3s,padding-left .3s}
+        .mm li a:hover,.mm li a.cur{color:var(--ocl);padding-left:12px}
+        .mm .btn{margin-top:18px;justify-content:center;min-height:48px}
+        .mm li,.mm .btn{opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
+        .mm.open li,.mm.open .btn{opacity:1;transform:none}
+        .mm.open li:nth-child(1){transition-delay:.05s}
+        .mm.open li:nth-child(2){transition-delay:.11s}
+        .mm.open li:nth-child(3){transition-delay:.17s}
+        .mm.open .btn{transition-delay:.23s}
+
+        /* focus */
+        .lock:focus-visible,.mn a:focus-visible,.mm a:focus-visible,.burger:focus-visible,.nr .btn:focus-visible{outline:2px solid var(--ocl);outline-offset:3px;border-radius:6px}
+
+        /* footer (+ position/z-index : seul ajout, pour passer au-dessus du halo fixe de la page services) */
+        footer{background:#2A1807;padding:20px 0 28px;margin-top:auto;position:relative;z-index:10}
+        .w{width:min(1200px,100% - 48px);margin:0 auto}
+        .fg{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;padding-bottom:40px}
+        footer h4{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ocl);margin-bottom:16px;font-weight:600}
+        footer ul{padding:0}footer li{list-style:none;margin:8px 0;color:var(--cr2);font-size:15px}footer li a:hover{color:var(--ocl)}
+        footer .d{color:var(--cr2);opacity:.8;font-size:15px;max-width:300px;margin-top:20px}
+        .soc{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}.soc a{padding:8px 16px;border:1px solid var(--ln);border-radius:99px;font-size:13px;color:var(--cr2)}.soc a:hover{border-color:var(--ocl);color:var(--ocl)}
+        .fb{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--ln);padding-top:22px;font-size:13px;color:var(--cr2);opacity:.8}
+
+        /* whatsapp */
+        .wa{position:fixed;right:max(22px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));z-index:70;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#25d366,#25D366);color:#FFFDF4;box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,253,244,.25);animation:wb 4s ease-in-out infinite}
+        .wa:before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgb(37,211,102,.7);animation:wp 2.6s ease-out infinite}
+        .wa svg{width:32px;height:32px;fill:currentColor}.wa:hover{filter:brightness(1.12)}
+        @keyframes wb{50%{transform:translateY(-8px)}}
+        @keyframes wp{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+
+        /* ============ Scroll-reveal (référence exacte) ============ */
+        .rv{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s;transition-delay:var(--d,0s)}
+        .rv.in{opacity:1;transform:none}
+        .rv:not(.in){transition-delay:0s}
+        @media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none!important}}
+
+        /* ============ Styles page services ============ */
+        #cta{text-align:center;overflow:hidden;padding:clamp(110px,13vw,180px) 0 clamp(150px,16vw,230px);background:radial-gradient(ellipse at 50% 115%,rgba(217,154,93,.55),transparent 62%),#FAF8EA}
+        #cta h2{font:500 clamp(38px,5.6vw,80px)/1.04 "Cormorant Garamond",Georgia,serif;max-width:900px;margin:0 auto;color:var(--cr)}
+        #cta h2 em{color:var(--ocl)}
+        #cta p{max-width:520px;margin:24px auto 38px;font-size:18px;color:var(--cr2)}
+
+        @keyframes ambientGlow{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.75;transform:scale(1.06)}}
+        @keyframes floatParticle{0%{transform:translateY(0px) translateX(0px);opacity:.25}50%{transform:translateY(-14px) translateX(8px);opacity:.65}100%{transform:translateY(0px) translateX(0px);opacity:.25}}
+        .animate-ambient{animation:ambientGlow 8s ease-in-out infinite}
+        .light-sweep-effect::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(212,150,59,0.22) 50%,rgba(255,255,255,0) 100%);transform:translateX(-100%) rotate(45deg);pointer-events:none;transition:transform 0.75s cubic-bezier(0.22,1,0.36,1)}
+        .card-light-hover:hover .light-sweep-effect::after{transform:translateX(100%) rotate(45deg)}
+        .card-hover-img{opacity:0;transform:scale(1.06);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1)}
+        .card-light-hover:hover .card-hover-img{opacity:1;transform:scale(1)}
+        .card-hover-scrim{opacity:0;transition:opacity 0.5s ease}
+        .card-light-hover:hover .card-hover-scrim{opacity:1}
+        .floating-particle{animation:floatParticle 6s ease-in-out infinite}
+        .editorial-frame{position:relative;padding:0px;border:1px solid rgba(58,36,22,0.14);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,0.96),rgba(249,247,244,0.85));box-shadow:0 22px 48px -18px rgba(58,36,22,0.16),0 0 0 1px rgba(212,150,59,0.14);overflow:hidden;transition:transform 0.5s cubic-bezier(0.22,1,0.36,1),box-shadow 0.5s ease,border-color 0.5s ease}
+        .editorial-frame:hover{transform:translateY(-4px);border-color:var(--oc);box-shadow:0 28px 56px -16px rgba(58,36,22,0.22),0 0 26px rgba(212,150,59,0.2)}
+        .editorial-frame .media{border-radius:12px;overflow:hidden}
+        .editorial-frame img{display:block;width:100%;height:auto;object-fit:contain;border-radius:12px}
+        .editorial-frame.narrow{max-width:448px;margin:0 auto}
+
+        #doms{font-family:'Manrope',system-ui,sans-serif;color:var(--cr)}
+        #doms section.dom{position:relative;padding:clamp(80px,10vw,140px) 0;overflow:hidden;background:transparent}
+        #doms .w{width:min(1200px,100% - 48px);margin:0 auto;display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center}
+        #doms .dom.r .art{order:-1}
+        #doms .art{position:relative;width:var(--s,100%);justify-self:center}
+        #doms .gn{font:500 clamp(90px,11vw,170px)/0.8 "Cormorant Garamond",serif;color:transparent;-webkit-text-stroke:1px rgba(164,83,12,0.35)}
+        #doms h2.t{font:500 clamp(36px,4.6vw,64px)/1.06 "Cormorant Garamond",Georgia,serif;color:#1A120E;margin-top:10px;margin-bottom:14px}
+        #doms .lead{color:var(--cr2);font-size:18px;line-height:1.6;max-width:520px;margin-bottom:28px}
+        #doms .sv{list-style:none;padding:0;margin:0;columns:2;column-gap:36px}
+        #doms .sv li{break-inside:avoid;padding:11px 0;border-top:1px solid var(--ln);font-size:15px;line-height:1.5;color:var(--cr);display:flex;gap:10px}
+        #doms .sv li:before{content:"";width:5px;height:5px;margin-top:0.62em;border-radius:50%;background:var(--oc);flex:0 0 auto}
+
+        /* ============ Responsive (home + services fusionnés) ============ */
+        @media(max-width:900px){
+            .nav{grid-template-columns:1fr auto}
+            .mn{display:none}
+            .burger{display:inline-flex;align-items:center;justify-content:center}
+            .mm{display:flex}
+            .brand{font-size:32px}
+            #doms .w{grid-template-columns:1fr;gap:36px}
+            #doms .dom.r .art{order:0}
+        }
+        @media(min-width:640px){.editorial-frame{padding:0px}}
+        @media(max-width:640px){
+            .nav{padding:0 20px}
+            .lock{left:20px}
+            .nr{gap:12px}
+            #doms .sv{columns:1}
+        }
+        @media(max-width:560px){.nr .btn{display:none}}
+        @media(prefers-reduced-motion:reduce){
+            *{animation:none!important;transition:none!important}
+            .rv{opacity:1!important;transform:none!important}
+            .editorial-frame:hover{transform:none}
+        }
+
+        ::-webkit-scrollbar{width:11px}
+        ::-webkit-scrollbar-track{background:#F5F1D7}
+        ::-webkit-scrollbar-thumb{background:linear-gradient(#C17A3A,#A4530C);border-radius:8px;border:2px solid #F5F1D7}
+        ::-webkit-scrollbar-thumb:hover{background:#8B3F0C}
+        #cta{overflow:hidden;text-align:center;padding:clamp(80px,10vw,140px) 0 clamp(120px,14vw,200px);
+        background:radial-gradient(ellipse at 50% 115%,rgba(217, 154, 93, 0.7),rgba(139,63,12,.3) 38%,transparent 66%),radial-gradient(ellipse 40% 35% at 90% 10%,rgba(141,162,140,.18),transparent 70%),linear-gradient(180deg,#F2EDCF,#FAF8EA)}
+        #cta .w{position:relative;z-index:1}
+        #cta h2{font:500 clamp(46px,7.4vw,108px)/1 "Cormorant Garamond",Georgia,serif;color:var(--cr)}
+        #cta h2 em{color:var(--ocl)}
+        #cta p{max-width:520px;margin:26px auto 40px;color:var(--cr2);font-size:18px}
+        #cta .btn{min-height:56px;padding:0 38px;font-size:17px}
+        #cta:after{content:"";position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(transparent,#2A1807)}
+        /* ===== SIRAJ · softened contact → footer fade (overrides #contact:after) ===== */
+        #cta:after{
+        content:"";
+        position:absolute;
+        left:0; right:0; bottom:0;
+        height:clamp(120px,14vw,200px);   /* was 110px — now matches #contact's bottom padding */
+        pointer-events:none;
+        background:linear-gradient(to bottom,
+            rgba(42,24,7,0)    0%,
+            rgba(42,24,7,.016) 12.5%,
+            rgba(42,24,7,.104) 25%,
+            rgba(42,24,7,.275) 37.5%,
+            rgba(42,24,7,.5)   50%,
+            rgba(42,24,7,.725) 62.5%,
+            rgba(42,24,7,.896) 75%,
+            rgba(42,24,7,.984) 87.5%,
+            #2A1807            100%);
+        }
+
+        /* Optional — also softens the warm glow just above the fade */
+        #cta{
+        background:
+            radial-gradient(ellipse at 50% 115%, rgba(217,154,93,.45), rgba(139,63,12,.2) 38%, transparent 66%),
+            radial-gradient(ellipse 40% 35% at 90% 10%, rgba(141,162,140,.18), transparent 70%),
+            linear-gradient(180deg,#faf8eb,#faf8eb);
+        }
+
+/* Tailwind is injected AFTER the page styles, exactly like the CDN script did in the wireframe
+   (so preflight + utilities keep the same cascade position). */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
