@@ -3,7 +3,7 @@
 :root{--b0:#FAF8EB;--b1:#F5F1D7;--b2:#4F2F0E;--cr:#2A1807;--cr2:#5E3B14;--oc:#B8642A;--ocl:#A4530C;--sg:#6F8B73;--sg2:#8DA28C;--ln:rgba(139,63,12,.2);--u:min(1vw,1.7778vh);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-behavior:smooth;scroll-padding-top:84px;scrollbar-color:#A4530C #F5F1D7;scrollbar-width:thin}
 *{box-sizing:border-box;margin:0}
-body{background:var(--b0);color:var(--cr);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden;display:flex;flex-direction:column;min-height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+body{background:var(--b0);color:var(--cr);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden;display:flex;flex-direction:column;min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));-webkit-text-size-adjust:100%;overflow-x:clip;}
 a{color:inherit;text-decoration:none}.sf{font-family:"Cormorant Garamond",Georgia,serif}
 
 /* logo */
@@ -68,7 +68,7 @@ a{color:inherit;text-decoration:none}.sf{font-family:"Cormorant Garamond",Georgi
 @keyframes gl{50%{opacity:.7;transform:scale(1.12)}}
 
 /* hero */
-.h1s{position:relative;min-height:100vh;display:flex;align-items:center;padding:130px 0 90px;overflow:hidden;background:linear-gradient(180deg,#FFFDF4,#FAF8EB)}
+.h1s{position:relative;min-height:100dvh;display:flex;align-items:center;padding:130px 0 90px;overflow:hidden;background:linear-gradient(180deg,#FFFDF4,#FAF8EB)}
 .lt{position:absolute;right:-12vmin;top:50%;width:92vmin;height:92vmin;margin-top:-46vmin;pointer-events:none}
 .lt:before,.lt:after{content:"";position:absolute;inset:0;border-radius:50%}
 .lt:before{background:radial-gradient(circle,rgba(255,253,244,.95) 0 3%,rgba(193,122,58,.7) 8%,rgba(193,122,58,.32) 22%,transparent 62%);animation:gl 6s ease-in-out infinite}
@@ -214,3 +214,4 @@ background:radial-gradient(ellipse at 50% 115%,rgba(217,154,93,.7),rgba(139,63,1
     radial-gradient(ellipse 40% 35% at 90% 10%, rgba(141,162,140,.18), transparent 70%),
     linear-gradient(180deg,#F2EDCF,#FAF8EA);
 }
+@media (hover:none){ /* move or neutralise :hover-only reveals here */ }

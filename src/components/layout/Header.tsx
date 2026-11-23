@@ -97,7 +97,10 @@ export default function Header({ current, morph = false }: HeaderProps) {
       setBarOn(n > 0.5);
     };
 
+    let lastW = window.innerWidth;                    
     const onResize = () => {
+      if (window.innerWidth === lastW) return;        
+      lastW = window.innerWidth;                      
       readPad();
       update();
     };
@@ -147,7 +150,7 @@ export default function Header({ current, morph = false }: HeaderProps) {
           </span>
         </span>
 
-        <nav className="mn" aria-label="Navigation principale">
+        <nav className="mn" aria-label="Navigation principale" aria-hidden={!menuOpen} inert={!menuOpen}>
           <ul>{links}</ul>
         </nav>
 

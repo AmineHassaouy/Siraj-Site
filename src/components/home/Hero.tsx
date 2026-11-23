@@ -45,10 +45,15 @@ export default function Hero() {
     const bg = bgRef.current;
     const bgw = bgwRef.current;
     if (!bg || !bgw) return;
+    let lastW = bg.clientWidth;
+    let lastH = bg.clientHeight;
 
     const fit = () => {
       const W = bg.clientWidth;
       const H = bg.clientHeight;
+      if (W === lastW && H === lastH) return;   // event didn't change the hero box: skip
+      lastW = W;
+      lastH = H;
       const w = Math.max(W, H * IMG_RATIO);
       const h = w / IMG_RATIO;
       bgw.style.width = w + "px";

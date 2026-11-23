@@ -2,7 +2,7 @@
 
 :root{--b0:#FAF8EA;--b1:#F5F1D7;--b2:#4F2F0E;--cr:#2A1807;--cr2:#5E3B14;--oc:#B8642A;--ocl:#A4530C;--sg:#6F8B73;--sg2:#8DA28C;--ln:rgba(139,63,12,.2);--u:min(1vw,1.7778vh);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-behavior:smooth;scroll-padding-top:84px}*{box-sizing:border-box;margin:0}
-body{background:var(--b0);color:var(--cr);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden}
+body{background:var(--b0);color:var(--cr);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden;-webkit-text-size-adjust:100%;overflow-x:clip;}
 a{color:inherit;text-decoration:none}.sf{font-family:"Cormorant Garamond",Georgia,serif}
 .lg{height:1.15em;aspect-ratio:1169/1345;background:url("/images/logo.png") center/contain no-repeat;flex:0 0 auto}.lk .lg,.kw .lg{filter:none}
 .lk{display:inline-flex;align-items:center;gap:.3em;line-height:1}
@@ -17,7 +17,7 @@ a{color:inherit;text-decoration:none}.sf{font-family:"Cormorant Garamond",Georgi
 .nav li a:hover,.nav li a.cur{color:var(--ocl);border-color:var(--ocl)}
 .nr{display:flex;justify-content:flex-end;align-items:center;gap:26px;font-size:14px;color:var(--cr2)}.nr .btn{min-height:42px;padding:0 22px;font-size:14px}.nr b{color:var(--ocl)}
 /* hero */
-.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;padding:0}
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;padding:0}
 .bg{position:absolute;inset:-4% 0;overflow:hidden}.bgw{position:absolute}.bgw img{display:block;width:100%;height:100%}.bgw svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .sh{position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,248,234,.4),transparent 48%),linear-gradient(0deg,#FAF8EA,transparent 30%)}
 .lock{position:fixed;left:calc(var(--u)*5);top:calc(var(--u)*9);z-index:60;font-size:calc(var(--u)*9.3);transform-origin:0 0}
@@ -221,3 +221,4 @@ html{scrollbar-color:#A4530C #F5F1D7;scrollbar-width:thin}
     radial-gradient(ellipse 40% 35% at 90% 10%, rgba(141,162,140,.18), transparent 70%),
     linear-gradient(180deg,#F2EDCF,#FAF8EA);
 }
+@media (hover:none){ /* move or neutralise :hover-only reveals here */ }
