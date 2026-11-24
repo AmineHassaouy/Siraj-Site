@@ -22,6 +22,8 @@ export const CONTACT = {
   phoneLabel: "+212 7 54 51 24 51",
   phoneHref: "tel:+212754512451",
   instagram: "https://www.instagram.com/siraj.digitale?avpt=MXd6OXIyMHZnZnZ5Zg==",
+  linkedin: "https://www.linkedin.com/company/siraj-digitale/",
+  facebook: "https://www.facebook.com/siraj.digitale"
 } as const;
 
 /** Footer “Services” column + the home carousel links point at these detail sections. */

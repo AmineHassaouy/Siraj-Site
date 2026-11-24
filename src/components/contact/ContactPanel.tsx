@@ -36,9 +36,12 @@ export default function ContactPanel() {
         <a target="_blank" rel="noopener" href={CONTACT.instagram}>
           Instagram
         </a>
-        {/* TODO: Facebook & LinkedIn URLs were placeholders (#) in the wireframe. */}
-        <a href="#">Facebook</a>
-        <a href="#">LinkedIn</a>
+        <a target="_blank" rel="noopener" href={CONTACT.facebook}>
+          Facebook
+        </a>
+        <a target="_blank" rel="noopener" href={CONTACT.linkedin}>
+          Linkedin
+        </a>
       </div>
     </aside>
   );

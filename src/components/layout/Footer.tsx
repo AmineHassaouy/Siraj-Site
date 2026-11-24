@@ -13,12 +13,15 @@ export default function Footer() {
             </div>
             <p className="d">{SITE_DESCRIPTION}</p>
             <div className="soc">
-              {/* TODO: LinkedIn & Facebook URLs were placeholders (#) in the wireframes. */}
-              <a href="#">LinkedIn</a>
+              <a target="_blank" rel="noopener" href={CONTACT.linkedin}>
+                Linkedin
+              </a>
               <a target="_blank" rel="noopener" href={CONTACT.instagram}>
                 Instagram
               </a>
-              <a href="#">Facebook</a>
+              <a target="_blank" rel="noopener" href={CONTACT.facebook}>
+                Facebook
+              </a>
             </div>
           </div>
           <div>
