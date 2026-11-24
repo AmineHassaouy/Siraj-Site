@@ -67,11 +67,11 @@ export default function ContactForm() {
       <div className="grid">
         <div className="f">
           <label htmlFor="n">Nom complet</label>
-          <input id="n" name="name" type="text" autoComplete="name" aria-invalid={Boolean(errors.name)} />
+          <input id="n" name="name" type="text" autoComplete="name" autoCapitalize="words" aria-invalid={Boolean(errors.name)} />
         </div>
         <div className="f">
           <label htmlFor="e">Adresse e-mail</label>
-          <input id="e" name="email" type="email" autoComplete="email" aria-invalid={Boolean(errors.email)} />
+          <input id="e" name="email" type="email" inputMode="email" autoCapitalize="none" spellCheck={false} autoComplete="email" aria-invalid={Boolean(errors.email)} />
         </div>
         <div className="f">
           <label htmlFor="p">

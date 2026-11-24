@@ -12,11 +12,9 @@
         body{
             background:var(--b0);color:var(--cr);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden;
             display:flex;flex-direction:column;
-            min-height:calc(100dvh  - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+            min-height:calc(100vh  - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));min-height:calc(100svh  - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
             min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
             padding-top:calc(84px + clamp(40px,8vh,120px)); /* barre fixe + espace garanti */
-            -webkit-text-size-adjust:100%;
-            overflow-x:clip;
         }
         a{color:inherit;text-decoration:none}
         /* typographie éditoriale limitée au contenu (le footer garde Manrope comme sur la home) */
@@ -194,7 +192,29 @@
             radial-gradient(ellipse 40% 35% at 90% 10%, rgba(141,162,140,.18), transparent 70%),
             linear-gradient(180deg,#faf8eb,#faf8eb);
         }
-@media (hover:none){ /* move or neutralise :hover-only reveals here */ }
+
+
+/* ---- Mobile / touch optimisations (added during the Next.js conversion) ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-x:clip}
+a,button{-webkit-tap-highlight-color:transparent}
+@media(max-width:900px){.burger{min-width:44px;min-height:44px}}
+@media(max-width:640px){footer ul a{display:inline-block;padding:7px 0}}
+
+
+/* ---- Footer: stack on tablet/phone (specific selector so no later .fg rule can win) ---- */
+html{max-width:100%;overflow-x:clip}
+footer .fg>*{min-width:0}
+footer .d{max-width:100%}
+@media(max-width:900px){
+  footer .fg{grid-template-columns:1fr 1fr;gap:36px 28px}
+  footer .fg>:first-child{grid-column:1/-1}
+}
+@media(max-width:640px){
+  footer .fg{grid-template-columns:1fr;gap:30px}
+  footer .fb{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
 /* Tailwind is injected AFTER the page styles, exactly like the CDN script did in the wireframe
    (so preflight + utilities keep the same cascade position). */
 @tailwind base;

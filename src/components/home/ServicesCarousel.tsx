@@ -46,6 +46,8 @@ export default function ServicesCarousel() {
   const orbRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const dragX = useRef<number | null>(null);
+  const swiped = useRef(false);
 
   const layout = useCallback((ix: number) => {
     const cards = cardRefs.current;
@@ -92,7 +94,30 @@ export default function ServicesCarousel() {
 
   return (
     <>
-      <div className="orb rv" id="orb" ref={orbRef} onMouseEnter={stopAuto} onMouseLeave={startAuto}>
+      <div className="orb rv" id="orb" ref={orbRef} 
+        onPointerEnter={(e) => {
+          if (e.pointerType === "mouse") stopAuto();
+        }}
+        onPointerLeave={(e) => {
+          if (e.pointerType === "mouse") startAuto();
+        }}
+        onPointerDown={(e) => {
+          dragX.current = e.clientX;
+          swiped.current = false;
+        }}
+        onPointerUp={(e) => {
+          if (dragX.current === null) return;
+          const dx = e.clientX - dragX.current;
+          dragX.current = null;
+          if (Math.abs(dx) > 40) {
+            swiped.current = true; // swallow the click that follows a swipe
+            goTo(index + (dx < 0 ? 1 : -1));
+          }
+        }}
+        onPointerCancel={() => {
+          dragX.current = null;
+        }}
+      >
         {HOME_SERVICES.map((s, k) => (
           <article
             key={s.title}
@@ -106,6 +131,10 @@ export default function ServicesCarousel() {
               <div
                 className="sp"
                 onClick={() => {
+                  if (swiped.current) {
+                    swiped.current = false;
+                    return;
+                  }
                   if (k !== index) goTo(k);
                 }}
               >

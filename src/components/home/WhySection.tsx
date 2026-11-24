@@ -50,7 +50,7 @@ export default function WhySection() {
           reset();
         }
       },
-      { threshold: 0.5 },
+      { threshold: 0.2 } /* stacked layout on phones is taller than half the screen */,
     );
     io.observe(el);
     return () => {

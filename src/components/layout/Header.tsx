@@ -97,10 +97,11 @@ export default function Header({ current, morph = false }: HeaderProps) {
       setBarOn(n > 0.5);
     };
 
-    let lastW = window.innerWidth;                    
+    // Mobile browsers fire "resize" when the address bar shows/hides (height only) — ignore that.
+    let lastWidth = window.innerWidth;
     const onResize = () => {
-      if (window.innerWidth === lastW) return;        
-      lastW = window.innerWidth;                      
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
       readPad();
       update();
     };
@@ -150,7 +151,7 @@ export default function Header({ current, morph = false }: HeaderProps) {
           </span>
         </span>
 
-        <nav className="mn" aria-label="Navigation principale" aria-hidden={!menuOpen} inert={!menuOpen}>
+        <nav className="mn" aria-label="Navigation principale">
           <ul>{links}</ul>
         </nav>
 
@@ -183,6 +184,7 @@ export default function Header({ current, morph = false }: HeaderProps) {
           ref={panelRef}
           aria-label="Navigation mobile"
           aria-hidden={!menuOpen}
+          inert={!menuOpen}
           onClick={(e) => {
             if ((e.target as HTMLElement).closest("a")) closeMenu();
           }}

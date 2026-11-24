@@ -24,12 +24,14 @@ export default function Hero() {
     const cue = cueRef.current;
     if (!bg || !text || !cue) return;
 
+    const coarse = window.matchMedia("(pointer:coarse)");
     const update = () => {
       const y = window.scrollY;
       const p = clamp01(y / (window.innerHeight * 0.55));
       text.style.opacity = String(1 - clamp01(p * 2.2));
       cue.style.opacity = String(1 - clamp01(p * 4));
-      bg.style.transform = "translateY(" + y * 0.2 + "px)";
+      // Scroll-linked parallax stutters on phones: only on mouse-driven devices.
+      bg.style.transform = coarse.matches ? "" : "translateY(" + y * 0.2 + "px)";
     };
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
@@ -45,15 +47,10 @@ export default function Hero() {
     const bg = bgRef.current;
     const bgw = bgwRef.current;
     if (!bg || !bgw) return;
-    let lastW = bg.clientWidth;
-    let lastH = bg.clientHeight;
 
     const fit = () => {
       const W = bg.clientWidth;
       const H = bg.clientHeight;
-      if (W === lastW && H === lastH) return;   // event didn't change the hero box: skip
-      lastW = W;
-      lastH = H;
       const w = Math.max(W, H * IMG_RATIO);
       const h = w / IMG_RATIO;
       bgw.style.width = w + "px";
@@ -61,9 +58,16 @@ export default function Hero() {
       bgw.style.left = (W - w) * 0.7 + "px";
       bgw.style.top = (H - h) * 0.5 + "px";
     };
-    window.addEventListener("resize", fit);
+    // Ignore height-only resizes (mobile address bar) so the photo doesn't jump.
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      fit();
+    };
+    window.addEventListener("resize", onResize);
     fit();
-    return () => window.removeEventListener("resize", fit);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   /* Fireflies gliding back and forth along the road path. */

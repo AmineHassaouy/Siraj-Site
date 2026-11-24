@@ -21,7 +21,7 @@ export default function ServicesOverview() {
           <a
             key={s.href}
             href={s.href}
-            className="card-light-hover relative group bg-white/75 backdrop-blur-md rounded-2xl p-7 border border-[#3A2416]/12 shadow-sm hover:shadow-xl hover:border-[#D4963B]/60 transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[260px]"
+            className="card-light-hover relative group bg-white/75 md:backdrop-blur-md rounded-2xl p-7 border border-[#3A2416]/12 shadow-sm hover:shadow-xl hover:border-[#D4963B]/60 transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[260px]"
           >
             <img
               src={s.image}
