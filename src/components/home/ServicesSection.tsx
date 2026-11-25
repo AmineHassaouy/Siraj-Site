@@ -11,7 +11,6 @@ export default function ServicesSection() {
             <br />
             un seul interlocuteur.
           </h2>
-          <p className="sub">Textes de cartes provisoires, à valider.</p>
         </div>
       </div>
       <ServicesCarousel />
